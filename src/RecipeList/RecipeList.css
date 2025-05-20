@@ -1,0 +1,166 @@
+.recipe-list,
+.recipe-detail {
+  width: 100%;              /* Занимает всю ширину родителя */
+  max-width: 500px;
+  min-height: 80vh;
+  height: auto;
+  max-height: none;         /* Но не больше 500px */
+  min-width: 360px;  
+  font-weight:500;       /* Не меньше — для визуальной стабильности */
+  margin: 4rem auto;
+  padding: 2rem;
+  color: #000000;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", sans-serif;
+  box-sizing: border-box;   /* ✅ Учитывает паддинги в ширину */
+}
+
+.recipe-list h3 {
+  max-height: 20px;
+  color: black;
+  text-align: center;
+  margin-bottom: 30px;
+  margin-top: 10px;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.recipe-card {
+  position: relative; /* Добавлено */
+  width: 390px;
+  height: 100px;
+  margin: 0 auto 30px;
+  padding: 1rem 1rem 1rem 10px;
+  /* background-color: #e1f79d; */
+  border-radius: 10px;
+  border: 1px solid black;
+  box-shadow: 0 6px 24px rgba(5, 0, 0, 0.1);
+  font-family: "Segoe UI", sans-serif;
+  text-align: left; /* Для текста */
+}
+
+.recipe-card h2 {
+  margin: 0 0 5px 0;
+  padding: 0;
+  color: black;
+  text-align: left;
+  margin: 0px 0px 5px 0px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  padding-right: 0;
+}
+
+.recipe-label {
+  width: 100px;
+  height: 20px;
+  /* background-color: #e1f79d; */
+  font-size: 1rem;
+}
+
+.recipe-ingredients {
+  width: 250px;
+  height: 20px;
+  padding: 0;
+  /* background-color: #e1f79d; */
+  color: #000000;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.view-button {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  width: 130px;
+  height: 40px;
+  font-size: 0.95rem;
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.view-button:hover {
+  background-color: #333;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+/* .recipe-detail {
+  width: 420px;
+  height: 700px;
+
+  margin-bottom: 170px;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 14px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+  color: #222;
+} */
+
+.recipe-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.recipe-title {
+  color: #000;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.recipe-meta {
+  display: flex;
+  justify-content: space-around;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #232323;
+  margin-bottom: 1.5rem;
+}
+
+.recipe-section {
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+  color: #000;
+}
+
+.section-label {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.section-list {
+  margin-left: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #444;
+}
+
+.back-button {
+  display: block;
+  margin: 2rem auto 0;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  background-color: #000;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.back-button:hover {
+  background-color: #2563eb;
+}
+

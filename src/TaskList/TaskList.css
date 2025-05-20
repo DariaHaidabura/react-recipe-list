@@ -1,0 +1,367 @@
+/* Общий контейнер */
+.task-list-container {
+  width: 500px;
+  height: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Светлая тема */
+.task-list-container.light {
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+.task-list-container.light .task-input,
+.task-list-container.light .task-item {
+  background-color: white;
+  color: black;
+  border: 1px solid #ccc;
+}
+
+.task-list-container.light .filter-container select {
+  background-color: white;
+  color: black;
+  border: 1px solid #ccc;
+}
+
+.task-list-container.light .button-toggle-theme {
+  background-color: #939397;
+}
+
+/* Тёмная тема */
+.task-list-container.dark {
+  background-color: #2b2b33;
+  color: #f4f4f9;
+}
+
+.task-list-container.dark .task-input,
+.task-list-container.dark .task-item {
+  background-color: #444;
+  color: #f4f4f9;
+  border: 1px solid #666;
+}
+
+.task-list-container.dark .filter-container select {
+  background-color: #444;
+  color: #f4f4f9;
+  border: 1px solid #666;
+}
+
+.task-list-container.dark .button-toggle-theme {
+  background-color: #1f1fc1;
+}
+
+/* Заголовок */
+.task-list-header {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Ввод новой задачи */
+.task-input-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.task-input {
+  width: 70%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+/* Кнопка добавления задачи */
+.add-task-button {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-task-button:hover {
+  background-color: #45a049;
+}
+
+/* Фильтрация и переключение темы */
+.filter-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.filter-container select {
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 5px;
+}
+
+.filter-container button {
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.filter-container button:hover {
+  background-color: #0056b3;
+}
+
+/* Контейнер задач */
+.task-items-container {
+  margin-top: 20px;
+}
+
+/* Задача */
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+/* Завершённая задача */
+.task-item.completed {
+  background-color: #388e3c30;
+}
+
+/* Текст задачи */
+.task-text {
+  font-size: 16px;
+  flex-grow: 1;
+}
+
+.task-text.completed {
+  text-decoration: line-through;
+  color: gray;
+}
+
+/* Кнопки действия */
+.task-actions button {
+  margin-left: 8px;
+  padding: 6px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+}
+
+.task-actions .complete-btn {
+  background-color: #ffc107;
+  color: white;
+}
+
+.task-actions .delete-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.task-actions .edit-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.task-actions .save-btn {
+  background-color: #388e3c;
+  color: white;
+}
+
+.task-actions .priority-btn {
+  background-color: #9ebcd6;
+  width: 70px;
+  color: rgb(255, 255, 255);
+}
+
+.task-actions .priority-btn.low {
+  background-color: #9ebcd6;
+  width: 70px;
+  color: rgb(255, 255, 255);
+}
+
+.task-actions .priority-btn.medium {
+  background-color: #eaff03;
+  width: 70px;
+  color: rgb(10, 10, 10);
+}
+
+.task-actions .priority-btn.hard {
+  background-color: #db3838;
+  width: 70px;
+  color: rgb(255, 255, 255);
+}
+
+/* Режим редактирования */
+.task-item.editing .task-text {
+  display: none;
+}
+
+.task-item.editing input {
+  width: 80%;
+  padding: 2px;
+  font-size: 16px;
+  border-radius: 5px;
+  margin-right: 10px;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+
+/* Статус задач */
+.task-status {
+  margin-top: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Контейнер для поиска и фильтра */
+.search-container {
+  display: flex; /* Выравнивание элементов по горизонтали */
+  justify-content: flex-start; /* Выравнивание элементов слева */
+  align-items: center; /* Выравнивание по вертикали */
+  margin-bottom: 20px; /* Отступ снизу */
+}
+
+/* Поле ввода для поиска */
+.search-container input {
+  width: 30%; /* Поле поиска будет занимать 60% ширины */
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  margin-left: 40px;
+  margin-top: 20px;
+}
+
+/* Кнопка поиска */
+.search-container button {
+  margin-left: 10px; /* Отступ между полем ввода и кнопкой */
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.search-container button:hover {
+  background-color: #0056b3; /* Темный синий при наведении */
+}
+
+/* Контейнер для фильтра и кнопки темы */
+.filter-container {
+  display: flex;
+  justify-content: space-between; /* Равномерное распределение элементов */
+  align-items: center; /* Выравнивание по вертикали */
+  margin-top: 2px; /* Отступ сверху */
+}
+
+/* Кнопка фильтра */
+.filter-container select,
+.filter-container button {
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.filter-container select {
+  width: 30%; /* Ширина для выпадающего списка */
+}
+
+/* Кнопка для смены темы */
+.filter-container button {
+  background-color: #28a745; /* Зеленая кнопка для переключения темы */
+  color: white;
+  margin-left: 10px;
+}
+
+.filter-container button:hover {
+  background-color: #218838; /* Тёмно-зеленая при наведении */
+}
+
+.recipe-detail {
+  width: 100%;
+  max-width: 500px;
+  height: 800px;
+  margin: 4rem auto;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  font-family: "Segoe UI", sans-serif;
+  box-sizing: border-box;
+  color: #222;
+  text-align: left;
+}
+
+.recipe-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.recipe-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.recipe-meta {
+  display: flex;
+  justify-content: space-around;
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.recipe-section {
+  margin-bottom: 1.5rem;
+}
+
+.section-label {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.section-list {
+  margin-left: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #444;
+}
+
+.back-button {
+  display: block;
+  margin: 2rem auto 0;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  background-color: #000;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.back-button:hover {
+  background-color: #2563eb;
+}

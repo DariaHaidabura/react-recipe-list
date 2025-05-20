@@ -1,0 +1,67 @@
+/* Общий стиль контейнера */
+.timer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+    background-color: #282c34; /* темный фон */
+    font-family: 'Arial', sans-serif;
+    color: white; /* белый текст по умолчанию */
+}
+
+/* Стиль для отображения времени */
+.timer-display {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #fff; /* яркий белый цвет для времени */
+}
+
+/* Стиль для контейнера кнопок */
+.timer-controls {
+    display: flex;
+    gap: 20px;
+}
+
+/* Общий стиль для кнопок */
+.timer-btn {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    color: white; /* белый текст на кнопках */
+    font-weight: bold;
+}
+
+/* Стиль для кнопки "Старт" */
+.start-btn {
+    background-color: #28a745; /* ярко-зеленый */
+}
+
+.start-btn:hover {
+    background-color: #218838; /* темно-зеленый */
+    transform: scale(1.1);
+}
+
+/* Стиль для кнопки "Стоп" */
+.stop-btn {
+    background-color: #dc3545; /* ярко-красный */
+}
+
+.stop-btn:hover {
+    background-color: #c82333; /* темно-красный */
+    transform: scale(1.1);
+}
+
+/* Стиль для кнопки "Рестарт" */
+.restart-btn {
+    background-color: #ffc107; /* ярко-желтый */
+}
+
+.restart-btn:hover {
+    background-color: #e0a800; /* темно-желтый */
+    transform: scale(1.1);
+}

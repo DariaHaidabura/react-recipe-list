@@ -1,0 +1,182 @@
+/* === Общий контейнер === */
+.quote-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 640px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+  font-family: 'Arial', sans-serif;
+}
+
+/* === Заголовок "Избранное" === */
+.quote-heading {
+  text-align: center;
+  margin: 14px 0 8px;
+  color: #3e3f42;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+/* === Блок отображения цитат === */
+.quote-display {
+  width: 100%;
+  max-width: 520px;
+  margin-bottom: 16px;
+}
+
+/* === Обёртка одной цитаты === */
+.quote-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  margin-top: 10px;
+  padding: 14px 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.2s ease;
+}
+
+/* === Контент цитаты (текст + тег) === */
+.quote-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  padding-right: 10px;
+}
+
+/* === Текст цитаты === */
+.quote-text {
+  width: 100%;
+  font-size: 1rem;
+  font-style: italic;
+  color: #333;
+  margin: 0;
+  word-break: break-word;
+}
+
+/* === Хэштег под цитатой === */
+.quote-tag {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #777;
+  margin: 0;
+}
+
+/* === Иконка (сердечко) === */
+.favorite-icon {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.favorite-icon:hover {
+  transform: scale(1.15);
+}
+
+/* === Кнопка "Next Quote" === */
+.quote-actions {
+  margin-bottom: 20px;
+}
+
+.quote-actions button {
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  width: 100%;
+  max-width: 400px;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background-color: #607d8b;
+}
+
+.quote-actions button:hover {
+  background-color: #455a64;
+}
+
+/* === Ввод и кнопки === */
+.quote-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 520px;
+  margin-top: 16px;
+}
+
+.quote-input input {
+  padding: 8px;
+  font-size: 0.95rem;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.quote-input input:focus {
+  border-color: #5c6bc0;
+}
+
+.quote-input button {
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  width: 100%;
+  max-width: 400px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* === Кнопки с индивидуальными цветами === */
+.btn-hashtag {
+  background-color: #ff9800;
+}
+.btn-hashtag:hover {
+  background-color: #fb8c00;
+}
+
+.btn-add {
+  background-color: #4caf50;
+}
+.btn-add:hover {
+  background-color: #388e3c;
+}
+
+.btn-random {
+  background-color: #2196f3;
+}
+.btn-random:hover {
+  background-color: #1976d2;
+}
+
+.btn-toggle {
+  background-color: #f44336;
+}
+.btn-toggle:hover {
+  background-color: #d32f2f;
+}
+
+.btn-search {
+  background-color: #9c27b0;
+}
+.btn-search:hover {
+  background-color: #7b1fa2;
+}
