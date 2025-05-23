@@ -98,6 +98,7 @@ export default function RecipeList() {
   const [recipes, setRecipes] = useState(InitialList);
   const [isRecipeOpen, setIsRecipeOpen] = useState(false);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     localStorage.setItem("recipeList", JSON.stringify(recipes));
@@ -118,94 +119,106 @@ export default function RecipeList() {
     }
   };
 
-  return (
-    <>
-      {!isRecipeOpen ? (
-        <div className="recipe-list">
-          <h3>Recipe List</h3>
+  const filteredRecipes =
+    searchQuery.trim() === ""
+      ? recipes
+      : recipes.filter((recipe) => {
+          const combined =
+            `${recipe.title} ${recipe.ingredients}`.toLowerCase();
+          return combined.includes(searchQuery.toLowerCase());
+        });
 
-          {recipes.map((recipe, index) => {
-            const bgColor = colors[index % colors.length];
-            return (
-              <div
-                key={recipe.id}
-                className="recipe-card"
+  return (
+    <div className="recipe-container">
+      <div className={`recipe-list ${isRecipeOpen ? "hidden" : "visible"}`}>
+        <h3>Recipe List</h3>
+        <input
+          className="search-input"
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Search..."
+        ></input>
+        {filteredRecipes.map((recipe, index) => {
+          const bgColor = colors[index % colors.length];
+          return (
+            <div
+              key={recipe.id}
+              className="recipe-card"
+              style={{ backgroundColor: bgColor }}
+            >
+              <h2 className="recipe-title" style={{ backgroundColor: bgColor }}>
+                {recipe.title}
+              </h2>
+              <p className="recipe-label" style={{ backgroundColor: bgColor }}>
+                Ingredients:
+              </p>
+              <p
+                className="recipe-ingredients"
                 style={{ backgroundColor: bgColor }}
               >
-                <h2
-                  className="recipe-title"
-                  style={{ backgroundColor: bgColor }}
-                >
-                  {recipe.title}
-                </h2>
-                <p
-                  className="recipe-label"
-                  style={{ backgroundColor: bgColor }}
-                >
-                  Ingredients:
-                </p>
-                <p
-                  className="recipe-ingredients"
-                  style={{ backgroundColor: bgColor }}
-                >
-                  {recipe.ingredients}
-                </p>
-                <button
-                  onClick={() => handleIsRecipeOpen(recipe.id)}
-                  className="view-button"
-                >
-                  View Recipe
-                </button>
-              </div>
-            );
-          })}
-        </div>
-      ) : (
-        <div className="recipe-detail">
-          <img
-            className="recipe-image"
-            src={selectedRecipe.image}
-            alt={selectedRecipe.title}
-          />
+                {recipe.ingredients}
+              </p>
+              <button
+                onClick={() => handleIsRecipeOpen(recipe.id)}
+                className="view-button"
+              >
+                View Recipe
+              </button>
+            </div>
+          );
+        })}
+      </div>
 
-          <h2 className="recipe-title">{selectedRecipe.title}</h2>
+      <div className={`recipe-detail ${isRecipeOpen ? "visible" : "hidden"}`}>
+        {selectedRecipe && (
+          <>
+            <img
+              className="recipe-image"
+              src={selectedRecipe.image}
+              alt={selectedRecipe.title}
+            />
 
-          <div className="recipe-meta">
-            <span>⏱ {selectedRecipe.cookTime}</span>
-            <span>🍽 {selectedRecipe.servings} servings</span>
-            <span>⚖ {selectedRecipe.totalWeight}</span>
-          </div>
+            <h2 className="recipe-title">{selectedRecipe.title}</h2>
 
-          <div className="recipe-section">
-            <p className="section-label">Ingredients:</p>
-            {selectedRecipe?.detailedIngredients?.length > 0 ? (
-              <ul className="section-list">
-                {selectedRecipe.detailedIngredients.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
-            ) : (
-              <p>No ingredients found</p>
-            )}
-          </div>
+            <div className="recipe-meta">
+              <span>⏱ {selectedRecipe.cookTime}</span>
+              <span>🍽 {selectedRecipe.servings} servings</span>
+              <span>⚖ {selectedRecipe.totalWeight}</span>
+            </div>
 
-          <div className="recipe-section">
-            <p className="section-label">Steps:</p>
-            {selectedRecipe?.steps?.length > 0 ? (
-              <ol className="section-list">
-                {selectedRecipe.steps.map((step, index) => (
-                  <li key={index}>{step}</li>
-                ))}
-              </ol>
-            ) : (
-              <p>No steps found</p>
-            )}
-            <button onClick={restartRecipes} className="back-button">
-              Back
-            </button>
-          </div>
-        </div>
-      )}
-    </>
+            <div className="recipe-section">
+              <p className="section-label">Ingredients:</p>
+              {selectedRecipe.detailedIngredients?.length > 0 ? (
+                <ul className="section-list">
+                  {selectedRecipe.detailedIngredients.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
+                </ul>
+              ) : (
+                <p>No ingredients found</p>
+              )}
+            </div>
+
+            <div className="recipe-section">
+              <p className="section-label">Steps:</p>
+              {selectedRecipe.steps?.length > 0 ? (
+                <ol className="section-list">
+                  {selectedRecipe.steps.map((step, index) => (
+                    <li key={index}>{step}</li>
+                  ))}
+                </ol>
+              ) : (
+                <p>No steps found</p>
+              )}
+
+              <button onClick={restartRecipes} className="back-button">
+                Back
+              </button>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
   );
 }
