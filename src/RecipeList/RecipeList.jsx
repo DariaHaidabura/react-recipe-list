@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import EditRecipeModal from "../EditRecipeModal/EditRecipeModal";
 import "./RecipeList.css";
 
 const InitialList = () => {
@@ -13,7 +14,7 @@ const InitialList = () => {
           image: "/img/breakfast-buritto.jpg",
           cookTime: "10 min",
           servings: 1,
-          totalWeight: "300g",
+          totalWeight: "300 g",
           detailedIngredients: [
             "2 Eggs",
             "1 Tortilla",
@@ -34,7 +35,7 @@ const InitialList = () => {
           image: "/img/avocado-salad.jpg",
           cookTime: "5 min",
           servings: 2,
-          totalWeight: "400g",
+          totalWeight: "400 g",
           detailedIngredients: [
             "1 Avocado",
             "1 Tomato",
@@ -55,7 +56,7 @@ const InitialList = () => {
           image: "/img/pasta-carbonara.jpg",
           cookTime: "20 min",
           servings: 2,
-          totalWeight: "600g",
+          totalWeight: "600 g",
           detailedIngredients: [
             "100g Pasta",
             "2 Eggs",
@@ -76,7 +77,7 @@ const InitialList = () => {
           image: "/img/chocolate-maffins.jpg",
           cookTime: "25 min",
           servings: 4,
-          totalWeight: "400g",
+          totalWeight: "400 g",
           detailedIngredients: [
             "1 cup Flour",
             "1/2 cup Cocoa",
@@ -99,11 +100,12 @@ export default function RecipeList() {
   const [isRecipeOpen, setIsRecipeOpen] = useState(false);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [recipeToEdit, setRecipeToEdit] = useState(null);
 
   useEffect(() => {
     localStorage.setItem("recipeList", JSON.stringify(recipes));
-    localStorage.removeItem("recipeList");
-  }, [recipes, isRecipeOpen, selectedRecipe]);
+  }, [recipes]);
 
   const handleIsRecipeOpen = (id) => {
     const thisRecipe = recipes.find((recipe) => recipe.id === id);
@@ -127,6 +129,27 @@ export default function RecipeList() {
             `${recipe.title} ${recipe.ingredients}`.toLowerCase();
           return combined.includes(searchQuery.toLowerCase());
         });
+
+  const handleEditClick = (recipe) => {
+    setRecipeToEdit(recipe);
+    setIsEditModalOpen(true);
+  };
+
+  const handleFieldChange = (field, value) => {
+    setRecipeToEdit((prev) => ({
+      ...prev,
+      [field]: field === "steps" ? value.split("\n") : value,
+    }));
+  };
+
+  const handleUpdateRecipe = () => {
+    const updatedRecipes = recipes.map((r) =>
+      r.id === recipeToEdit.id ? recipeToEdit : r
+    );
+    setRecipes(updatedRecipes);
+    localStorage.setItem("recipeList", JSON.stringify(updatedRecipes));
+    setIsEditModalOpen(false);
+  };
 
   return (
     <div className="recipe-container">
@@ -164,6 +187,12 @@ export default function RecipeList() {
                 className="view-button"
               >
                 View Recipe
+              </button>
+              <button
+                onClick={() => handleEditClick(recipe)}
+                className="edit-button"
+              >
+                Edit Recipe
               </button>
             </div>
           );
@@ -219,6 +248,13 @@ export default function RecipeList() {
           </>
         )}
       </div>
+      <EditRecipeModal
+        isOpen={isEditModalOpen}
+        recipe={recipeToEdit}
+        onFieldChange={handleFieldChange}
+        onSave={handleUpdateRecipe}
+        onClose={() => setIsEditModalOpen(false)}
+      />
     </div>
   );
 }

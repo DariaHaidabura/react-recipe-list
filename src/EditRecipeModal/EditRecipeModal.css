@@ -1,0 +1,129 @@
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 400px;
+  max-height: 830px;
+  width: 100%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  font-family: "Segoe UI", sans-serif;
+}
+
+.recipe-image {
+  width: 100%;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.modal .recipe-label {
+  display: block;
+  font-weight: 500;
+  margin: 0.8rem 0 0.3rem;
+  font-size: 1.2rem;
+  text-align: left;
+  color: #333;
+}
+
+.recipe-input {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.recipe-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 1.5rem;
+}
+
+.section {
+  margin-bottom: 1.2rem;
+}
+
+.modal .section-label {
+  display: block;
+  font-weight: 500;
+  text-align: left;
+  margin-bottom: 0.4rem;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.modal .section-input,
+.modal .section-textarea {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.section-textarea {
+  resize: vertical;
+  font-family: "Segoe UI", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 300px;
+  min-height: 100px;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.update-button,
+.close-button {
+  display: block;
+  width: 150px;
+  padding: 0.6rem;
+  font-size: 1rem;
+  margin-top: 0.8rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.update-button {
+  background-color: #000;
+  color: #fff;
+}
+
+.update-button:hover {
+  background-color: #2563eb;
+}
+
+.close-button {
+  background-color: #e0e0e0;
+  color: #000;
+}
+
+.close-button:hover {
+  background-color: #d0d0d0;
+}
