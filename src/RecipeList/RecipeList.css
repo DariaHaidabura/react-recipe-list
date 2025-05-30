@@ -4,7 +4,7 @@
   max-width: 500px;
   min-height: 80vh;
   height: auto;
-  max-height: 1000px; /* Но не больше 500px */
+  max-height: 1500px; /* Но не больше 500px */
   min-width: 360px;
   font-weight: 500; /* Не меньше — для визуальной стабильности */
   margin: 4rem auto;
@@ -123,7 +123,57 @@
   cursor: pointer;
 }
 
-.view-button:hover {
+.top-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1rem;
+}
+
+.search-input {
+  position: relative;
+  width: 100%;
+  min-width: 100px;
+  max-width: 210px;
+  padding: 10px 14px;
+  margin: 10px auto;
+  margin-left: 0px;
+  display: block;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.add-button {
+  display: block;
+  margin: 15px 5px 10px 10px;
+  min-width: 100px;
+  max-width: 190px;
+  width: 130px;
+  height: 40px;
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-button:hover {
+  background-color: #1e40af; /* более тёмный оттенок синего */ /* лёгкое увеличение */
+  cursor: pointer;
+}
+
+.view-button:hover, .edit-button:hover {
   background-color: #333;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
@@ -194,19 +244,6 @@
 
 .back-button:hover {
   background-color: #2563eb;
-}
-
-.search-input {
-  width: 100%;
-  max-width: 390px;
-  padding: 10px 14px;
-  margin: 20px auto;
-  display: block;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  outline: none;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .search-input:focus {

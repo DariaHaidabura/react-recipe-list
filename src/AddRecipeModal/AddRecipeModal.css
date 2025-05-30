@@ -1,0 +1,158 @@
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.modal {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  min-width: 450px;
+  max-width: 450px;
+  max-height: 860px;
+  width: 100%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  font-family: "Segoe UI", sans-serif;
+}
+
+.recipe-image {
+  width: 100%;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.modal .recipe-label {
+  display: block;
+  width:200px;
+  font-weight: 500;
+  margin: 0.8rem 0 0.3rem;
+  font-size: 1.1rem;
+  text-align: left;
+  color: #333;
+}
+
+.meta-recipe-label {
+  display: block;
+  min-width: 70px;
+  text-align: center;
+  font-weight: 500;
+  margin: 0.3rem 0 0.3rem;
+  margin-left: 0px;
+  font-size: 1.1rem;
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+  /* padding: 0.2rem; */
+}
+
+.meta-recipe-input {
+  /* width: 100%; */
+  min-width: 70px;
+  max-width: 70px;
+  min-height: 30px;
+  max-height: 40px;
+  /* padding: 0.5rem; */
+  margin-right: 10px;
+  margin-left: 5px;
+  font-size: 1.1rem;
+  font-weight: 300;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.recipe-meta {
+  display: flex;
+  justify-content: space-between;
+  height: 30px;
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 1.2rem;
+  margin-right: 50px;
+}
+
+.section {
+  margin-bottom: 1.2rem;
+}
+
+.modal .section-label {
+  display: block;
+  font-weight: 500;
+  text-align: left;
+  padding-top: 10px;
+  margin-bottom: 0.9rem;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.modal .section-input,
+.modal .section-textarea {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.section-textarea {
+  resize: vertical;
+  font-family: "Segoe UI", sans-serif;
+  font-size: 0.5rem;
+  font-weight: 300;
+  min-height: 100px;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.add-recipe-button,
+.close-recipe-button {
+  display: block;
+  width: 150px;
+  padding: 0.6rem;
+  font-size: 1rem;
+  margin-top: 0.8rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.close-recipe-button {
+  background-color: #000;
+  color: #fff;
+}
+
+.add-recipe-button {
+  background-color: #2563eb;
+  color: white;
+}
+
+.close-recipe-button:hover {
+  background-color: #333;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.add-recipe-button:hover {
+  background-color: #1e40af; /* более тёмный оттенок синего */ /* лёгкое увеличение */
+  cursor: pointer;
+}

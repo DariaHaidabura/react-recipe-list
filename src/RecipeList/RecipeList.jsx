@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import EditRecipeModal from "../EditRecipeModal/EditRecipeModal";
+import AddRecipeModal from "../AddRecipeModal/AddRecipeModal";
 import "./RecipeList.css";
 
 const InitialList = () => {
@@ -74,7 +75,7 @@ const InitialList = () => {
           id: 4,
           title: "Chocolate Muffins",
           ingredients: "Flour, Cocoa, Eggs, Sugar",
-          image: "/img/chocolate-maffins.jpg",
+          image: "/img/chocolate-muffins.jpg",
           cookTime: "25 min",
           servings: 4,
           totalWeight: "400 g",
@@ -101,7 +102,19 @@ export default function RecipeList() {
   const [selectedRecipe, setSelectedRecipe] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [recipeToEdit, setRecipeToEdit] = useState(null);
+  const [newRecipe, setNewRecipe] = useState({
+    id: null,
+    title: "",
+    ingredients: "",
+    image: "",
+    cookTime: "",
+    servings: "",
+    totalWeight: "",
+    detailedIngredients: [],
+    steps: [],
+  });
 
   useEffect(() => {
     localStorage.setItem("recipeList", JSON.stringify(recipes));
@@ -151,17 +164,45 @@ export default function RecipeList() {
     setIsEditModalOpen(false);
   };
 
+  const handleAddClick = () => {
+    setIsAddModalOpen(true);
+  };
+
+  const handleAddRecipe = () => {
+    setRecipes([...recipes, newRecipe]);
+    localStorage.setItem("recipeList", JSON.stringify(newRecipe));
+    setNewRecipe({
+      id: null,
+      title: "",
+      ingredients: "",
+      image: "",
+      cookTime: "",
+      servings: null,
+      totalWeight: "",
+      detailedIngredients: [],
+      steps: [],
+    });
+
+    setIsAddModalOpen(false);
+  };
+
   return (
     <div className="recipe-container">
       <div className={`recipe-list ${isRecipeOpen ? "hidden" : "visible"}`}>
         <h3>Recipe List</h3>
-        <input
-          className="search-input"
-          type="text"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search..."
-        ></input>
+        <div className="top-controls">
+          <input
+            className="search-input"
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search..."
+          ></input>
+          <button onClick={() => handleAddClick()} className="add-button">
+            Add Recipe
+          </button>
+        </div>
+
         {filteredRecipes.map((recipe, index) => {
           const bgColor = colors[index % colors.length];
           return (
@@ -254,6 +295,14 @@ export default function RecipeList() {
         onFieldChange={handleFieldChange}
         onSave={handleUpdateRecipe}
         onClose={() => setIsEditModalOpen(false)}
+      />
+      <AddRecipeModal
+        allRecipes={recipes}
+        recipe={newRecipe}
+        addRecipe={setNewRecipe}
+        isOpen={isAddModalOpen}
+        onSave={handleAddRecipe}
+        onClose={() => setIsAddModalOpen(false)}
       />
     </div>
   );
