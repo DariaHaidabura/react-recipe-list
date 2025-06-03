@@ -1,12 +1,7 @@
 .recipe-list,
 .recipe-detail {
-  width: 100%; /* Занимает всю ширину родителя */
-  max-width: 500px;
-  min-height: 80vh;
   height: auto;
-  max-height: 1500px; /* Но не больше 500px */
-  min-width: 360px;
-  font-weight: 500; /* Не меньше — для визуальной стабильности */
+  font-weight: 500;
   margin: 4rem auto;
   padding: 2rem;
   color: #000000;
@@ -14,19 +9,24 @@
   border-radius: 16px;
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
   font-family: "Segoe UI", sans-serif;
-  box-sizing: border-box; /* ✅ Учитывает паддинги в ширину */
+  box-sizing: border-box;
+}
+
+.recipe-list {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .recipe-detail {
+  min-width: 600px;
+  width: 100%;
   opacity: 0;
   right: 0%;
   transition: opacity 0.4s ease, transform 0.4s ease;
   pointer-events: none;
   position: relative;
   top: 0;
-  width: 100%;
-  max-width: 500px;
-  min-width: 500px;
   margin: 0 auto;
   z-index: 10;
 }
@@ -52,17 +52,17 @@
 }
 
 .recipe-card {
-  position: relative; /* Добавлено */
-  width: 390px;
-  height: 100px;
-  margin: 0 auto 30px;
-  padding: 1rem 1rem 1rem 10px;
-  /* background-color: #e1f79d; */
+  position: relative;
+  width: 48%;
+  max-width: 48%;
+  min-width: 300px;
+  box-sizing: border-box;
+  margin-bottom: 30px;
+  padding: 1rem;
   border-radius: 10px;
   border: 1px solid black;
   box-shadow: 0 6px 24px rgba(5, 0, 0, 0.1);
   font-family: "Segoe UI", sans-serif;
-  text-align: left; /* Для текста */
 }
 
 .recipe-card h2 {
@@ -78,49 +78,54 @@
 
 .recipe-label {
   width: 100px;
-  height: 20px;
-  /* background-color: #e1f79d; */
+  height: auto;
+  text-align: left;
   font-size: 1rem;
 }
 
 .recipe-ingredients {
   width: 250px;
-  height: 20px;
+  min-height: 20px;
+  text-align: left;
   padding: 0;
-  /* background-color: #e1f79d; */
   color: #000000;
   margin: 0;
   font-size: 1rem;
+  word-break: break-word;
+}
+
+.recipe-card-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
 }
 
 .view-button {
-  position: absolute;
-  top: 30%;
-  right: 1rem;
-  transform: translateY(-50%);
-  width: 130px;
-  height: 40px;
-  font-size: 0.95rem;
-  background-color: #000000;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
+  background-color: #057b55;
 }
 
 .edit-button {
-  position: absolute;
-  top: 70%;
-  right: 1rem;
-  transform: translateY(-50%);
-  width: 130px;
+  background-color: #d97706;
+}
+
+.view-button,
+.edit-button {
+  width: 100px;
   height: 40px;
   font-size: 0.95rem;
-  background-color: #000000;
   color: white;
   border: none;
-  border-radius: 6px;
   cursor: pointer;
+  border-radius: 6px;
+  margin: 10px 10px 0 0;
+}
+
+.view-button:hover {
+  background-color: #023928;
+}
+
+.edit-button:hover {
+  background-color: #794203;
 }
 
 .top-controls {
@@ -138,11 +143,12 @@
 .search-input {
   position: relative;
   width: 100%;
-  min-width: 100px;
-  max-width: 210px;
+  min-width: 400px;
+  min-height: 25px;
+  /* max-width: 210px; */
   padding: 10px 14px;
   margin: 10px auto;
-  margin-left: 0px;
+  right: 12%;
   display: block;
   font-size: 16px;
   border: 1px solid #ccc;
@@ -152,12 +158,13 @@
 }
 
 .add-button {
-  display: block;
-  margin: 15px 5px 10px 10px;
-  min-width: 100px;
+  position: relative;
+  margin: 10px 5px 10px 0px;
+  min-width: 130px;
   max-width: 190px;
-  width: 130px;
-  height: 40px;
+  width: 160px;
+  height: 45px;
+  right: 5%;
   font-size: 1rem;
   font-weight: 500;
   background-color: #2563eb;
@@ -169,23 +176,27 @@
 }
 
 .add-button:hover {
-  background-color: #1e40af; /* более тёмный оттенок синего */ /* лёгкое увеличение */
+  background-color: #1e40af;
   cursor: pointer;
-}
-
-.view-button:hover, .edit-button:hover {
-  background-color: #333;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
 .recipe-image {
   width: 100%;
   height: 300px;
   display: block;
-  flex-shrink: 0;
   object-fit: cover;
   border-radius: 10px;
   margin-bottom: 1.5rem;
+}
+
+.recipe-delete-icon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  cursor: pointer;
 }
 
 .recipe-title {
@@ -248,4 +259,31 @@
 
 .search-input:focus {
   border-color: #888;
+}
+
+.recipe-card-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* ровно 2 карточки */
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .recipe-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
 }

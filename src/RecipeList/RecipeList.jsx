@@ -120,6 +120,8 @@ export default function RecipeList() {
     localStorage.setItem("recipeList", JSON.stringify(recipes));
   }, [recipes]);
 
+  const deleteImg = "/img/delete-img.png";
+
   const handleIsRecipeOpen = (id) => {
     const thisRecipe = recipes.find((recipe) => recipe.id === id);
     if (thisRecipe) {
@@ -186,6 +188,14 @@ export default function RecipeList() {
     setIsAddModalOpen(false);
   };
 
+  const handleDeleteClick = (thisRecipe) => {
+    const updatedRecipes = recipes.filter(
+      (recipe) => recipe.id !== thisRecipe.id
+    );
+    setRecipes(updatedRecipes);
+    localStorage.setItem("recipeList", JSON.stringify(updatedRecipes));
+  };
+
   return (
     <div className="recipe-container">
       <div className={`recipe-list ${isRecipeOpen ? "hidden" : "visible"}`}>
@@ -203,41 +213,57 @@ export default function RecipeList() {
           </button>
         </div>
 
-        {filteredRecipes.map((recipe, index) => {
-          const bgColor = colors[index % colors.length];
-          return (
-            <div
-              key={recipe.id}
-              className="recipe-card"
-              style={{ backgroundColor: bgColor }}
-            >
-              <h2 className="recipe-title" style={{ backgroundColor: bgColor }}>
-                {recipe.title}
-              </h2>
-              <p className="recipe-label" style={{ backgroundColor: bgColor }}>
-                Ingredients:
-              </p>
-              <p
-                className="recipe-ingredients"
+        <div className="recipe-card-container">
+          {filteredRecipes.map((recipe, index) => {
+            const bgColor = colors[index % colors.length];
+            return (
+              <div
+                key={recipe.id}
+                className="recipe-card"
                 style={{ backgroundColor: bgColor }}
               >
-                {recipe.ingredients}
-              </p>
-              <button
-                onClick={() => handleIsRecipeOpen(recipe.id)}
-                className="view-button"
-              >
-                View Recipe
-              </button>
-              <button
-                onClick={() => handleEditClick(recipe)}
-                className="edit-button"
-              >
-                Edit Recipe
-              </button>
-            </div>
-          );
-        })}
+                <h2
+                  className="recipe-title"
+                  style={{ backgroundColor: bgColor }}
+                >
+                  {recipe.title}
+                </h2>
+                <p
+                  className="recipe-label"
+                  style={{ backgroundColor: bgColor }}
+                >
+                  Ingredients:
+                </p>
+                <p
+                  className="recipe-ingredients"
+                  style={{ backgroundColor: bgColor }}
+                >
+                  {recipe.ingredients}
+                </p>
+                <div className="recipe-card-buttons">
+                  <button
+                    onClick={() => handleIsRecipeOpen(recipe.id)}
+                    className="view-button"
+                  >
+                    View Recipe
+                  </button>
+                  <button
+                    onClick={() => handleEditClick(recipe)}
+                    className="edit-button"
+                  >
+                    Edit Recipe
+                  </button>
+                </div>
+                <img
+                  src={deleteImg}
+                  alt="Delete"
+                  className="recipe-delete-icon"
+                  onClick={() => handleDeleteClick(recipe)}
+                />
+              </div>
+            );
+          })}
+        </div>
       </div>
 
       <div className={`recipe-detail ${isRecipeOpen ? "visible" : "hidden"}`}>
