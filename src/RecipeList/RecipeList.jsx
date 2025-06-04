@@ -197,123 +197,125 @@ export default function RecipeList() {
   };
 
   return (
-    <div className="recipe-container">
-      <div className={`recipe-list ${isRecipeOpen ? "hidden" : "visible"}`}>
-        <h3>Recipe List</h3>
-        <div className="top-controls">
-          <input
-            className="search-input"
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search..."
-          ></input>
-          <button onClick={() => handleAddClick()} className="add-button">
-            Add Recipe
-          </button>
-        </div>
+    <div className="page-wrapper">
+      <div className="recipe-container">
+        <div className={`recipe-list ${isRecipeOpen ? "hidden" : "visible"}`}>
+          <h3>Recipe List</h3>
+          <div className="top-controls">
+            <input
+              className="search-input"
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search..."
+            ></input>
+            <button onClick={() => handleAddClick()} className="add-button">
+              Add Recipe
+            </button>
+          </div>
 
-        <div className="recipe-card-container">
-          {filteredRecipes.map((recipe, index) => {
-            const bgColor = colors[index % colors.length];
-            return (
-              <div
-                key={recipe.id}
-                className="recipe-card"
-                style={{ backgroundColor: bgColor }}
-              >
-                <h2
-                  className="recipe-title"
+          <div className="recipe-card-container">
+            {filteredRecipes.map((recipe, index) => {
+              const bgColor = colors[index % colors.length];
+              return (
+                <div
+                  key={recipe.id}
+                  className="recipe-card"
                   style={{ backgroundColor: bgColor }}
                 >
-                  {recipe.title}
-                </h2>
-                <p
-                  className="recipe-label"
-                  style={{ backgroundColor: bgColor }}
-                >
-                  Ingredients:
-                </p>
-                <p
-                  className="recipe-ingredients"
-                  style={{ backgroundColor: bgColor }}
-                >
-                  {recipe.ingredients}
-                </p>
-                <div className="recipe-card-buttons">
-                  <button
-                    onClick={() => handleIsRecipeOpen(recipe.id)}
-                    className="view-button"
+                  <h2
+                    className="recipe-title"
+                    style={{ backgroundColor: bgColor }}
                   >
-                    View Recipe
-                  </button>
-                  <button
-                    onClick={() => handleEditClick(recipe)}
-                    className="edit-button"
+                    {recipe.title}
+                  </h2>
+                  <p
+                    className="recipe-label"
+                    style={{ backgroundColor: bgColor }}
                   >
-                    Edit Recipe
-                  </button>
+                    Ingredients:
+                  </p>
+                  <p
+                    className="recipe-ingredients"
+                    style={{ backgroundColor: bgColor }}
+                  >
+                    {recipe.ingredients}
+                  </p>
+                  <div className="recipe-card-buttons">
+                    <button
+                      onClick={() => handleIsRecipeOpen(recipe.id)}
+                      className="view-button"
+                    >
+                      View Recipe
+                    </button>
+                    <button
+                      onClick={() => handleEditClick(recipe)}
+                      className="edit-button"
+                    >
+                      Edit Recipe
+                    </button>
+                  </div>
+                  <img
+                    src={deleteImg}
+                    alt="Delete"
+                    className="recipe-delete-icon"
+                    onClick={() => handleDeleteClick(recipe)}
+                  />
                 </div>
-                <img
-                  src={deleteImg}
-                  alt="Delete"
-                  className="recipe-delete-icon"
-                  onClick={() => handleDeleteClick(recipe)}
-                />
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
-      </div>
 
-      <div className={`recipe-detail ${isRecipeOpen ? "visible" : "hidden"}`}>
-        {selectedRecipe && (
-          <>
-            <img
-              className="recipe-image"
-              src={selectedRecipe.image}
-              alt={selectedRecipe.title}
-            />
+        <div className={`recipe-detail ${isRecipeOpen ? "visible" : "hidden"}`}>
+          {selectedRecipe && (
+            <>
+              <img
+                className="recipe-image"
+                src={selectedRecipe.image}
+                alt={selectedRecipe.title}
+              />
 
-            <h2 className="recipe-title">{selectedRecipe.title}</h2>
+              <h2 className="recipe-title">{selectedRecipe.title}</h2>
 
-            <div className="recipe-meta">
-              <span>⏱ {selectedRecipe.cookTime}</span>
-              <span>🍽 {selectedRecipe.servings} servings</span>
-              <span>⚖ {selectedRecipe.totalWeight}</span>
-            </div>
+              <div className="recipe-meta">
+                <span>⏱ {selectedRecipe.cookTime}</span>
+                <span>🍽 {selectedRecipe.servings} servings</span>
+                <span>⚖ {selectedRecipe.totalWeight}</span>
+              </div>
 
-            <div className="recipe-section">
-              <p className="section-label">Ingredients:</p>
-              {selectedRecipe.detailedIngredients?.length > 0 ? (
-                <ul className="section-list">
-                  {selectedRecipe.detailedIngredients.map((item, index) => (
-                    <li key={index}>{item}</li>
-                  ))}
-                </ul>
-              ) : (
-                <p>No ingredients found</p>
-              )}
-            </div>
+              <div className="recipe-section">
+                <p className="section-label">Ingredients:</p>
+                {selectedRecipe.detailedIngredients?.length > 0 ? (
+                  <ul className="section-list">
+                    {selectedRecipe.detailedIngredients.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p>No ingredients found</p>
+                )}
+              </div>
 
-            <div className="recipe-section">
-              <p className="section-label">Steps:</p>
-              {selectedRecipe.steps?.length > 0 ? (
-                <ol className="section-list">
-                  {selectedRecipe.steps.map((step, index) => (
-                    <li key={index}>{step}</li>
-                  ))}
-                </ol>
-              ) : (
-                <p>No steps found</p>
-              )}
+              <div className="recipe-section">
+                <p className="section-label">Steps:</p>
+                {selectedRecipe.steps?.length > 0 ? (
+                  <ol className="section-list">
+                    {selectedRecipe.steps.map((step, index) => (
+                      <li key={index}>{step}</li>
+                    ))}
+                  </ol>
+                ) : (
+                  <p>No steps found</p>
+                )}
 
-              <button onClick={restartRecipes} className="back-button">
-                Back
-              </button>
-            </div>
-          </>
-        )}
+                <button onClick={restartRecipes} className={`back-button ${isRecipeOpen ? "visible" : ""}`}>
+                  Back
+                </button>
+              </div>
+            </>
+          )}
+        </div>
       </div>
       <EditRecipeModal
         isOpen={isEditModalOpen}

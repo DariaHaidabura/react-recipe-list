@@ -9,7 +9,36 @@
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: slideFadeIn 0.3s ease-out forwards;
   font-family: "Segoe UI", sans-serif;
+}
+
+.modal-backdrop.closing {
+  animation: slideFadeOut 0.3s ease-out forwards;
+}
+
+@keyframes slideFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideFadeOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
 }
 
 .modal {
@@ -34,7 +63,7 @@
 
 .modal .recipe-label {
   display: block;
-  width:200px;
+  width: 200px;
   font-weight: 500;
   margin: 0.8rem 0 0.3rem;
   font-size: 1.1rem;

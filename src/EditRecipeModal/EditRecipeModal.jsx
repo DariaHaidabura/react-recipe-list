@@ -8,10 +8,28 @@ export default function EditRecipeModal({
   onFieldChange,
   onSave,
 }) {
-  if (!isOpen) return null;
+  const [isVisible, setIsVisible] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      setIsVisible(true);
+      setIsClosing(false);
+    }
+  }, [isOpen]);
+
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      setIsVisible(false);
+      onClose();
+    }, 300);
+  };
+
+  if (!isVisible) return null;
 
   return (
-    <div className="modal-backdrop">
+    <div className={`modal-backdrop ${isClosing ? "closing" : ""}`}>
       <div className="modal">
         <img className="recipe-image" src={recipe?.image} alt={recipe?.title} />
 
@@ -52,7 +70,7 @@ export default function EditRecipeModal({
           <button className="update-button" onClick={onSave}>
             Update Recipe
           </button>
-          <button className="close-button" onClick={onClose}>
+          <button className="close-button" onClick={handleClose}>
             Close
           </button>
         </div>

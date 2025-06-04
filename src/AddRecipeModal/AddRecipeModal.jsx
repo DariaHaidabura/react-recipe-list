@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./AddRecipeModal.css";
 
 export default function AddRecipeModal({
@@ -9,12 +9,30 @@ export default function AddRecipeModal({
   onSave,
   onClose,
 }) {
-  if (!isOpen) return null;
+  const [isVisible, setIsVisible] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      setIsVisible(true);
+      setIsClosing(false);
+    }
+  }, [isOpen]);
+
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      setIsVisible(false);
+      onClose();
+    }, 300);
+  };
+
+  if (!isVisible) return null;
 
   const newId = allRecipes.length + 1;
 
   return (
-    <div className="modal-backdrop">
+    <div className={`modal-backdrop ${isClosing ? "closing" : ""}`}>
       <div className="modal">
         <label className="recipe-label">Recipe Title:</label>
         <input
@@ -125,7 +143,7 @@ export default function AddRecipeModal({
           <button onClick={onSave} className="add-recipe-button">
             Add Recipe
           </button>
-          <button onClick={onClose} className="close-recipe-button">
+          <button onClick={handleClose} className="close-recipe-button">
             Close
           </button>
         </div>
