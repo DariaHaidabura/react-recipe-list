@@ -145,6 +145,7 @@
 
 .update-button:hover {
   background-color: #2563eb;
+  transform: scale(1.1);
 }
 
 .close-button {
@@ -154,4 +155,5 @@
 
 .close-button:hover {
   background-color: #d0d0d0;
+  transform: scale(1.1);
 }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import EditRecipeModal from "../EditRecipeModal/EditRecipeModal";
 import AddRecipeModal from "../AddRecipeModal/AddRecipeModal";
+import DeleteRecipeModal from "../DeleteRecipeModal/DeleteRecipeModal";
 import "./RecipeList.css";
 
 const InitialList = () => {
@@ -103,7 +104,9 @@ export default function RecipeList() {
   const [searchQuery, setSearchQuery] = useState("");
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [recipeToEdit, setRecipeToEdit] = useState(null);
+  const [recipeToDelete, setRecipeToDelete] = useState(null);
   const [newRecipe, setNewRecipe] = useState({
     id: null,
     title: "",
@@ -188,12 +191,15 @@ export default function RecipeList() {
     setIsAddModalOpen(false);
   };
 
-  const handleDeleteClick = (thisRecipe) => {
-    const updatedRecipes = recipes.filter(
-      (recipe) => recipe.id !== thisRecipe.id
-    );
-    setRecipes(updatedRecipes);
-    localStorage.setItem("recipeList", JSON.stringify(updatedRecipes));
+  const handleDeleteClick = (recipe) => {
+    setRecipeToDelete(recipe);
+    setIsDeleteModalOpen(true);
+  };
+
+  const handleConfirmDelete = () => {
+    const updated = recipes.filter((recipe) => recipe.id !== recipeToDelete.id);
+    setRecipes(updated);
+    setIsDeleteModalOpen(false);
   };
 
   return (
@@ -309,7 +315,10 @@ export default function RecipeList() {
                   <p>No steps found</p>
                 )}
 
-                <button onClick={restartRecipes} className={`back-button ${isRecipeOpen ? "visible" : ""}`}>
+                <button
+                  onClick={restartRecipes}
+                  className={`back-button ${isRecipeOpen ? "visible" : ""}`}
+                >
                   Back
                 </button>
               </div>
@@ -332,6 +341,12 @@ export default function RecipeList() {
         onSave={handleAddRecipe}
         onClose={() => setIsAddModalOpen(false)}
       />
+      {isDeleteModalOpen && (
+        <DeleteRecipeModal
+          onClose={() => setIsDeleteModalOpen(false)}
+          onConfirm={handleConfirmDelete}
+        />
+      )}
     </div>
   );
 }
